@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+    <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+    <classpathentry kind="src" path="src/main/java"/>
+    <classpathentry kind="src" path="src/main/resources"/>
+    <classpathentry kind="src" path="src/test/java"/>
+    <classpathentry kind="src" path="src/test/resources"/>
+    <classpathentry kind="output" path="target/classes"/>
+
+    <classpathentry kind="lib" path="../tools/eclipse/lib/macaw-service-api.jar"/>
+    <classpathentry kind="lib" path="../tools/eclipse/lib/macaw-service-client.jar"/>
+    <classpathentry kind="lib" path="../tools/eclipse/lib/javax.inject.jar"/>
+    <classpathentry kind="lib" path="../tools/eclipse/lib/slf4j-api.jar"/>
+    <classpathentry kind="lib" path="src/main/lib/calculator-api.jar"/>
+</classpath>
+

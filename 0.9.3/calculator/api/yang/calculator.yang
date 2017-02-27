@@ -1,0 +1,65 @@
+module calculator {
+
+    prefix "calc";
+    namespace "http://macaw.io/quickstart/service/calculator";
+    yang-version 1;
+
+    import macaw-service-extension {
+        prefix s;
+    }
+
+    organization "macaw.io";
+    contact yang-model-info@macaw.io;
+
+    description "A simple calculator service";
+
+
+    revision 2016-06-08;
+
+    container service-def {
+        s:service-namespace "io.macaw.services";
+        s:service-name "calculator";
+        s:options {
+            s:java-options {
+                s:service-interface-class-simple-name: "Calculator";
+                s:service-impl-class-simple-name: "BasicCalculator";
+            }
+        }
+    }
+    
+    rpc add {
+        description "Adds the numbers given as input";
+
+        input {
+            leaf-list numbers {
+                type decimal64 {fraction-digits 2;}
+                description "Add all numbers";
+                
+            }
+        }
+
+        output {
+            leaf result {
+                type decimal64 {fraction-digits 2;}              
+            }
+        }
+
+    }
+
+    rpc multiply {
+        description "Multiplies the numbers given as input";
+
+        input {
+            leaf-list numbers {
+                type decimal64 {fraction-digits 2;}
+                description "Multiplies all numbers";
+            }
+        }
+
+        output {
+            leaf result {
+                type decimal64 {fraction-digits 2;}              
+            }
+        }
+    }
+}
