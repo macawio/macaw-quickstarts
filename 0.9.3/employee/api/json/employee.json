@@ -1,0 +1,101 @@
+{
+  "schema-version": "0.1.0",
+  "service": {
+    "namespace": "io.macaw.services",
+    "name": "employee",
+    "version": "1.0.0",
+    "description": "This is a module for employee service.",
+    "domain-entities": {
+      "employee": {
+        "description": "The employee entity",
+        "properties": {
+          "id": {
+            "type": "int32",
+            "mandatory": true,
+            "description": "Unique identifier for the employee"
+          },
+          "first-name": {
+            "type": "string",
+            "mandatory": true,
+            "description": "First name of the employee"
+          },
+          "last-name": {
+            "type": "string",
+            "mandatory": true,
+            "description": "Last name of the employee"
+          },
+          "email": {
+            "type": "string",
+            "mandatory": true,
+            "description": "Email of the employee(Email id should be unique). Email id will be used to login to the organization portal."
+          },
+          "password": {
+            "type": "string",
+            "mandatory": true,
+            "description": "password used to login to the organization portal."
+          },
+          "date-of-joining": {
+            "type": "uint64",
+            "mandatory": true,
+            "description": "DOJ of the employee."
+          }
+        }
+      }
+    },
+    "apis": [
+      {
+        "name": "add-employee",
+        "inputs": [
+          {
+            "name": "employee",
+            "type": "employee",
+            "description": "The employee object"
+          }
+        ],
+        "output": {
+          "type": "int32",
+          "description": "employee id of the newly added employee"
+        }
+      },
+      {
+        "name": "delete-employee",
+        "inputs": [
+          {
+            "name": "employee-id",
+            "type": "int32",
+            "description": "the id of the employee to be deleted"
+          }
+        ]
+      },
+      {
+        "name": "get-employees",
+        "output": {
+          "type": "list",
+          "item": "employee",
+          "description": "returns the employees list."
+        }
+      }
+    ],
+    "notifications": {
+      "publish": {
+        "NEW_EMPLOYEE_ADDED": {
+          "description": "A notification which is published when a new employee is added by the employee service.",
+          "payload-type": "employee"
+        },
+        "EMPLOYEE_RELIEVED": {
+          "description": "A notification which is published when an employee is relieved.",
+          "payload-type": "string"
+        }
+      }
+    },
+    "options": {
+      "code-gen": {
+        "java": {
+          "package-name": "http.macaw.io.quickstart.service.employee.rev161201",
+          "interface-class-simple-name": "EmployeeService",
+          "impl-class-simple-name": "EmployeeServiceImpl"
+        }
+      }
+    }
+  }
+}

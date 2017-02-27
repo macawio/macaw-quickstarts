@@ -1,0 +1,62 @@
+{
+	"service": {
+	    "namespace": "io.macaw.services",
+	    "name": "todo-list",
+	    "version": "1.0.0",
+	    "description": "A service which keeps track of your \"TODO\"s",
+	    "domain-entities" : {
+	    	"todo" : {
+	    		"description" : "Represents a TODO item",
+	    		"properties" : {
+	    			"id" : {
+	    				"type" : "string",
+	    				"description" : "Id of the TODO"
+	    			},
+	    			"summary" : {
+	    				"type" : "string",
+	    				"description" : "Summary of the TODO"
+	    			}
+	    		}
+	    	}
+	    },
+	    "apis" : [
+		    {
+		    	"name" : "add-todo",
+		    	"inputs" : [
+		    		{
+		    			"name" : "summary",
+		    			"description" : "The summary of the TODO to add",
+		    			"type" : "string",
+		    			"mandatory" : true
+		    		}
+		    	],
+		    	"output" : {
+		    		"type" : "todo",
+		    		"description" : "The newly created TODO"
+		    	}
+		    },
+		    {
+		    	"name" : "get-todo",
+		    	"inputs" : [
+		    		{
+		    			"name" : "id",
+		    			"description" : "The id of the TODO to get",
+		    			"type" : "string",
+		    			"mandatory" : true
+		    		}
+		    	],
+		    	"output" : {
+		    		"type" : "todo",
+		    		"description" : "The TODO corresponding to the id that was passed to this API"
+		    	}
+		    }
+	    ],
+	    "options" : {
+	    	"code-gen" : {
+	    		"java" : {
+	    			"package-name" : "com.macaw.quickstart.todo"
+	    		}
+	    	}
+	    }
+	}
+}

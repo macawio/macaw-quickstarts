@@ -1,0 +1,121 @@
+module employee {
+
+    prefix "employee";
+    namespace "http://macaw.io/quickstart/service/employee";
+    yang-version 1;
+
+    import macaw-service-extension {
+        prefix s;
+    }
+
+    organization "macaw.io";
+    contact yang-model-info@macaw.io;
+
+    description "This is a module for employee service.";
+
+
+    revision 2016-12-01;
+
+    notification NEW_EMPLOYEE_ADDED {
+        description "A notification which is published when a new employee is added by the employee service.";
+        uses grp-employee; // point to the employee grouping
+    }
+
+    notification EMPLOYEE_RELIEVED {
+        description "A notification which is published when an employee is relieved.";
+        leaf email-id {
+            type string;
+            description "Email of the relieved employee.";
+        }
+    }
+
+    container service-def {
+        s:service-namespace "io.macaw.services";
+        s:service-name "employee";
+        s:options {
+            s:java-options {
+                s:service-interface-class-simple-name: "EmployeeService";
+                s:service-impl-class-simple-name: "EmployeeServiceImpl";
+            }
+        }
+    }
+
+    grouping grp-employee{
+        container employee {
+            leaf id {
+                type int32;
+                mandatory false;
+                description "Unique identifier for the employee";
+            }
+
+            leaf first-name {
+                type string;
+                mandatory true;
+                description "First name of the employee";
+            }
+
+            leaf last-name {
+                type string;
+                mandatory false;
+                description "Last name of the employee";
+            }
+
+            leaf email {
+                type string;
+                mandatory true;
+                description "Email of the employee(Email id should be unique). Email id will be used to login to the organization portal.";
+            }
+
+            leaf password {
+                type string;
+                mandatory true;
+                description "password used to login to the organization portal.";
+            }
+
+            leaf date-of-joining {
+                type uint64;
+                mandatory true;
+                description "DOJ of the employee.";
+            }
+       }
+    }
+
+    grouping grp-employees {
+        list employees {
+            description "List of employees";
+            uses grp-employee; // we refer to the employee grouping that we created earlier
+        }
+    }
+
+    rpc add-employee {
+        description "Creates a new employee and publishes notification NEW_EMPLOYEE_ADDED.";
+
+        input {
+            uses grp-employee;
+        }
+
+        output {
+            leaf employee-id {
+                type int32;
+            }
+        }
+    }
+
+    rpc delete-employee {
+        description "deletes an employee and publishes EMPLOYEE_RELIEVED notification.";
+
+        input {
+            leaf employee-id {
+                type int32;
+            }
+        }
+    }
+
+    rpc get-employees {
+        description "returns the employees list.";
+
+        output {
+            uses grp-employees;
+        }
+    }
+}

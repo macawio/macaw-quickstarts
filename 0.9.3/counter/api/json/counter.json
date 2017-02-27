@@ -1,0 +1,50 @@
+{
+	"service": {
+            "namespace": "io.macaw.services",
+            "name": "counter",
+            "version": "1.2.3",
+            "description": "A basic service which exposes an API to increment a counter",
+			"apis" : [
+				{
+					"name" : "increment",
+					"description" : "Increments the current counter value by 1 and returns the value of the counter",
+					"output" : {
+						"type" : "int64",
+						"description" : "The current value of the counter"
+					}
+				},
+				{
+					"name" : "increment-by",
+					"description" : "Increments the current counter value by the value passed as the input and returns the current value of the counter",
+					"inputs" : [
+						{
+							"name" : "value",
+							"type" : "int64",
+							"description" : "The amount by which to increment the counter value"
+						}
+					],
+					"output" : {
+						"type" : "int64",
+						"description" : "The current value of the counter"
+					}
+				},
+				{
+					"name" : "get-current-count",
+					"description" : "Returns the current value of the counter",
+					"output" : {
+						"type" : "int64",
+						"description" : "The current value of the counter"
+					}
+				}
+			],
+			"options" : {
+				"code-gen" : {
+					"java" : {
+						"package-name" : "io.macaw.quickstart.counter"
+					}
+				}
+
+			}
+
+	}
+}

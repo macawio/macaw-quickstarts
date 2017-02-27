@@ -1,0 +1,53 @@
+{
+  "schema-version": "0.1.0",
+  "service": {
+    "namespace": "io.macaw.services",
+    "name": "intranet-portal",
+    "version": "1.0.0",
+    "description": "This is a module for intranet portal service.",
+    "apis": [
+      {
+        "name": "login",
+        "inputs": [
+          {
+            "name": "email",
+            "type": "string",
+            "description": "Email-id used to login."
+          },
+          {
+            "name": "password",
+            "type": "string",
+            "description": "password for the provided email id to login to the organization portal."
+          }
+        ]
+      }
+    ],
+    "notifications": {
+      "subscribe": [
+        {
+          "notification-id": "NEW_EMPLOYEE_ADDED",
+          "service-namespace": "io.macaw.services",
+          "service-name": "employee",
+          "service-version": "1.0.0",
+          "description": "Notification subscription when new employee is added."
+        },
+        {
+          "notification-id": "EMPLOYEE_RELIEVED",
+          "service-namespace": "io.macaw.services",
+          "service-name": "employee",
+          "service-version": "1.0.0",
+          "description": "Notification subscription when employee is relieved."
+        }
+      ]
+    },
+    "options": {
+      "code-gen": {
+        "java": {
+          "package-name": "http.macaw.io.quickstart.service.intranet.portal.rev161201",
+          "interface-class-simple-name": "IntranetPortal",
+          "impl-class-simple-name": "IntranetPortalImpl"
+        }
+      }
+    }
+  }
+}

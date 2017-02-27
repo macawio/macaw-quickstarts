@@ -1,0 +1,104 @@
+{
+
+	"service" : {
+		"namespace" : "io.macaw.services",
+		"name" : "issue-tracker",
+		"version" : "1.0.0",
+		"enumerations" : {
+			"issue-type" : {
+				"allowed-values" : ["bug", "enhancement", "task"]
+			}
+		},
+		"domain-entities" : {
+			"issue" : {
+				"description" : "Represents an issue in the issue tracker",
+				"properties" : {
+					"id" : {
+						"type" : "string",
+						"description" : "Unique id of the issue"
+					},
+					"summary" : {
+						"type" : "string",
+						"description" : "Brief summary of the issue"
+					},
+					"description" : {
+						"type" : "string",
+						"description" : "Detailed description of the issue"
+					},
+					"assigned-to" : {
+						"type" : "string",
+						"description" : "Id of the user to whom the issue is assigned to"
+					},
+					"reporter" : {
+						"type" : "string",
+						"description" : "The id of the user who reported the issue"
+					},
+					"type" : {
+						"type" : "issue-type",
+						"description" : "Type of the issue"
+					}
+				}
+			}
+		},
+		"apis" : [
+			{
+				"name" : "create-issue",
+				"description" : "Creates a new issue",
+				"inputs" : [
+					{
+						"name" : "issue",
+						"type" : "issue",
+						"description" : "The new issue being created"
+					}
+				],
+				"output" : {
+					"type" : "issue",
+					"description" : "Returns the newly created issue"
+				}
+			},
+			{
+				"name" : "create-account",
+				"description" : "Creates a new user account",
+				"inputs" : [
+					{
+						"name" : "user-id",
+						"type" : "string",
+						"description" : "Unique id of the user"
+					},
+					{
+						"name" : "first-name",
+						"type" : "string",
+						"description" : "First name of the user"
+					},
+					{
+						"name" : "last-name",
+						"type" : "string",
+						"description" : "Last name of the user"
+					}
+				]
+			},
+			{
+				"name" : "get-issue",
+				"description" : "Returns the issue corresponding to the passed issue id",
+				"inputs" : [
+					{
+						"name" : "issue-id",
+						"type" : "string",
+						"description" : "The id of the issue being fetched"
+					}
+				],
+				"output" : {
+					"type" : "issue",
+					"description" : "The issue corresponding to the passed id. Null, if no such issue exists"
+				}
+			}
+		],
+		"options" : {
+			"code-gen" : {
+				"java" : {
+					"package-name" : "io.macaw.quickstart.issue.tracker"
+				}
+			}
+		}
+	}
+}

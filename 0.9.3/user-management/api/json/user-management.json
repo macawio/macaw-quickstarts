@@ -1,0 +1,76 @@
+{
+
+	"service" : {
+		"namespace" : "io.macaw.services",
+		"name" : "user-management",
+		"version" : "1.0.0",
+		"domain-entities" : {
+			"user" : {
+				"description" : "Represents the basic information of an user",
+				"properties" : {
+					"id" : {
+						"type" : "string",
+						"description" : "Unique id of the user"
+					},
+					"first-name" : {
+						"type" : "string",
+						"description" : "First name of the user"
+					},
+					"last-name" : {
+						"type" : "string",
+						"description" : "Last name of the user"
+					}
+				}
+			}
+		},
+		"apis" : [
+			{
+				"name" : "create-user",
+				"description" : "Creates a new user",
+				"inputs" : [
+					{
+						"name" : "user-id",
+						"type" : "string",
+						"description" : "The user id for the new user"
+					},
+					{
+						"name" : "first-name",
+						"type" : "string",
+						"description" : "First name of the user"
+					},
+					{
+						"name" : "last-name",
+						"type" : "string",
+						"description" : "Last name of the user"
+					}
+				],
+				"output" : {
+					"type" : "user",
+					"description" : "Returns the newly created user"
+				}
+			},
+			{
+				"name" : "get-user",
+				"description" : "Returns the user corresponding to the passed user id",
+				"inputs" : [
+					{
+						"name" : "user-id",
+						"type" : "string",
+						"description" : "The id of the user being fetched"
+					}
+				],
+				"output" : {
+					"type" : "user",
+					"description" : "The user corresponding to the passed id. Null, if no such user exists"
+				}
+			}
+		],
+		"options" : {
+			"code-gen" : {
+				"java" : {
+					"package-name" : "io.macaw.quickstart.user.management"
+				}
+			}
+		}
+	}
+}

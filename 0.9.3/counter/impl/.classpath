@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="src" path="src/test/resources"/>
+	<classpathentry kind="lib" path="../tools/eclipse/lib/macaw-service-api.jar"/>
+	<classpathentry kind="lib" path="../tools/eclipse/lib/macaw-service-client.jar"/>
+	<classpathentry kind="lib" path="../tools/eclipse/lib/javax.inject.jar"/>
+	<classpathentry kind="lib" path="../tools/eclipse/lib/slf4j-api.jar"/>
+	<classpathentry kind="lib" path="src/main/lib/counter-api.jar"/>
+	<classpathentry kind="lib" path="src/main/lib/cassandra-driver-core.jar"/>
+	<classpathentry kind="lib" path="src/main/lib/cassandra-driver-mapping.jar"/>
+	<classpathentry kind="lib" path="src/main/lib/gson-2.3.1.jar"/>
+	<classpathentry kind="lib" path="src/main/lib/guava.jar"/>
+	<classpathentry kind="lib" path="src/main/lib/metrics-core.jar"/>
+	<classpathentry kind="lib" path="src/main/lib/netty-buffer.jar"/>
+	<classpathentry kind="lib" path="src/main/lib/netty-codec.jar"/>
+	<classpathentry kind="lib" path="src/main/lib/netty-common.jar"/>
+	<classpathentry kind="lib" path="src/main/lib/netty-handler.jar"/>
+	<classpathentry kind="lib" path="src/main/lib/netty-transport.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>

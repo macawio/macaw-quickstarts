@@ -1,0 +1,31 @@
+<project name="counter" basedir="." default="deploy">
+
+    <property environment="env"/>
+
+    <!-- The final name of the distributable -->
+    <property name="jar.name" value="counter-api"/>
+
+    <property name="src.root.dir" value="${basedir}/src"/>
+    <property name="src.main.lib.dir" value="${src.root.dir}/main/lib"/>
+    <property name="service.impl.src.main.lib.dir" value="${basedir}/../impl/src/main/lib/"/>
+
+    <target name="clean">
+    </target>
+
+    <target name="check-impl-main-lib-directory-exists">
+        <available file="${service.impl.src.main.lib.dir}" property="service.impl.src.main.lib.dir.exists"/>
+    </target>
+
+    <target name="deploy" depends="check-impl-main-lib-directory-exists" description="Places the API jar in the service implementation's libraries folder" if="service.impl.src.main.lib.dir.exists">
+        <copy file="${jar.name}.jar" todir="${service.impl.src.main.lib.dir}"/>
+        <!--&lt;!&ndash; Copy over the API dependencies too &ndash;&gt;-->
+        <!--<copy todir="${service.impl.src.main.lib.dir}">-->
+            <!--<fileset dir="${src.main.lib.dir}">-->
+                <!--<include name="**/*"/>-->
+            <!--</fileset>-->
+        <!--</copy>-->
+    </target>
+
+</project>
+
+

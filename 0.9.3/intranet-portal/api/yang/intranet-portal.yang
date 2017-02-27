@@ -1,0 +1,68 @@
+module intranet-portal {
+
+    prefix "IP";
+    namespace "http://macaw.io/quickstart/service/intranet-portal";
+    yang-version 1;
+
+    import macaw-notification {
+      prefix n;
+    }
+
+    import macaw-service-extension {
+        prefix s;
+    }
+
+    organization "macaw.io";
+    contact yang-model-info@macaw.io;
+
+    description "This is a module for intranet portal service.";
+
+    revision 2016-12-01;
+
+    container service-def {
+        s:service-namespace "io.macaw.services";
+        s:service-name "intranet-portal";
+        s:options {
+            s:java-options {
+                s:service-interface-class-simple-name: "IntranetPortal";
+                s:service-impl-class-simple-name: "IntranetPortalImpl";
+            }
+        }
+    }
+
+    container notification-subscriptions {
+        n:subscription employee-added {
+            n:notification-id  "NEW_EMPLOYEE_ADDED";
+            description "Notification subscription when new employee is added.";
+            n:service-name "employee";
+            n:service-version "1.0.0";
+            n:service-namespace "io.macaw.services";
+        }
+
+        n:subscription employee-relieved {
+            n:notification-id  "EMPLOYEE_RELIEVED";
+            description "Notification subscription when employee is relieved.";
+            n:service-name "employee";
+            n:service-version "1.0.0";
+            n:service-namespace "io.macaw.services";
+        }
+    }
+
+    rpc login {
+        description "To check whether employee is valid";
+
+        input {
+            leaf email {
+                type string;
+                mandatory true;
+                description "Email-id used to login.";
+            }
+
+            leaf password {
+                type string;
+                mandatory true;
+                description "password for the provided email id to login to the organization portal.";
+            }
+        }
+    }
+}
